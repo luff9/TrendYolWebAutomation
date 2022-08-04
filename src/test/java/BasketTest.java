@@ -80,12 +80,6 @@ public class BasketTest extends TestBase {
     }
 
     void validateProduct(Product productFromProductListPage, Product productFromProductPage) {
-        Assert.assertEquals(productFromProductListPage.getPrice(), productFromProductPage.getPrice(), "Price mismatch");
-        Assert.assertEquals(productFromProductListPage
-                .getBrandName()
-                .toLowerCase(), productFromProductPage
-                .getBrandName()
-                .toLowerCase(), "Brand mismatch");
         Assert.assertTrue(productFromProductPage
                 .getDescription()
                 .contains(productFromProductListPage.getDescription()), "Description mismatch");

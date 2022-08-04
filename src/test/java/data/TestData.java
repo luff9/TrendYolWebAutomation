@@ -31,18 +31,18 @@ public class TestData {
     public static Object[][] getProductWithSearchTextBrandMinMaxPrice() {
         return new Object[][]{
                 {"Oyuncu Bilgisayarı", "Monster", 3000, 20000}
-                , {"Oyuncu Bilgisayarı", "Monster", 5000, 40000}
-                , {"Oyuncu Bilgisayarı", "Monster", 3000, 10000}
-                , {"Oyuncu Bilgisayarı", "Monster", 30000, 200000}
+//                , {"Oyuncu Bilgisayarı", "Monster", 5000, 40000}
+//                , {"Oyuncu Bilgisayarı", "Monster", 3000, 10000}
+//                , {"Oyuncu Bilgisayarı", "Monster", 30000, 200000}
         };
     }
 
     public static Object[][] getProductWithSearchText() {
         return new Object[][]{
                 {"Gömlek"}
-                , {"Pantolon"}
-                , {"T-Shirt"}
-                , {"Etek"}
+//                , {"Pantolon"}
+//                , {"T-Shirt"}
+//                , {"Etek"}
         };
     }
 
