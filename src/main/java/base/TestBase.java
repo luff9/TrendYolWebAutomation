@@ -1,7 +1,7 @@
 package base;
 
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import page.HomePage;
 import page.LoginPage;
@@ -16,7 +16,7 @@ public class TestBase {
 
     }
 
-    @AfterTest
+    @AfterMethod
     public void tearDown() {
         driver.quit();
     }
