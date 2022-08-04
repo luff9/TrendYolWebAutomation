@@ -5,6 +5,7 @@
         <classes>
             <class name="BasketTest"/>
             <class name="LoginTest"/>
+            <class name="ImageTest"/>
         </classes>
     </test> <!-- Test -->
 </suite> <!-- Suite -->

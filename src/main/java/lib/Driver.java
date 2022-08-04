@@ -1,7 +1,6 @@
 package lib;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -28,8 +27,14 @@ public class Driver {
                 driver = getChromeDriver();
                 break;
         }
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver
+                .manage()
+                .window()
+                .maximize();
+        driver
+                .manage()
+                .timeouts()
+                .implicitlyWait(Duration.ofSeconds(10));
         return driver;
     }
 
@@ -38,7 +43,10 @@ public class Driver {
         edgeOptions.addArguments("--disable-notifications");
         edgeOptions.addArguments("--start-maximized");
         edgeOptions.addArguments("--disable-infobars");
-        return WebDriverManager.edgedriver().capabilities(edgeOptions).create();
+        return WebDriverManager
+                .edgedriver()
+                .capabilities(edgeOptions)
+                .create();
     }
 
     private static WebDriver getFirefoxDriver() {
@@ -46,7 +54,10 @@ public class Driver {
         firefoxOptions.addArguments("--disable-notifications");
         firefoxOptions.addArguments("--start-maximized");
         firefoxOptions.addArguments("--disable-infobars");
-        return WebDriverManager.firefoxdriver().capabilities(firefoxOptions).create();
+        return WebDriverManager
+                .firefoxdriver()
+                .capabilities(firefoxOptions)
+                .create();
     }
 
     private static WebDriver getChromeDriver() {
@@ -54,7 +65,10 @@ public class Driver {
         chromeOptions.addArguments("disable-infobars");
         chromeOptions.addArguments("--start-maximized");
         chromeOptions.addArguments("--disable-notifications");
-        return WebDriverManager.chromedriver().capabilities(chromeOptions).create();
+        return WebDriverManager
+                .chromedriver()
+                .capabilities(chromeOptions)
+                .create();
     }
 
     public static void scrollIntoViewTop(WebDriver driver, WebElement el) {
@@ -62,6 +76,7 @@ public class Driver {
         js.executeScript("arguments[0].scrollIntoView({block: \"start\"});", el);
         sleep(3000);
     }
+
     public static void sleep(int duration) {
         try {
             Thread.sleep(duration);
@@ -69,11 +84,14 @@ public class Driver {
             throw new RuntimeException(e);
         }
     }
-    public static void closeOldTabAndSwitchNewTab(WebDriver driver){
+
+    public static void closeOldTabAndSwitchNewTab(WebDriver driver) {
         sleep(3000);
         driver.close();
-        ArrayList<String> newTab = new ArrayList<String>(driver.getWindowHandles());
-        driver.switchTo().window(newTab.get(0));
+        ArrayList<String> newTab = new ArrayList<>(driver.getWindowHandles());
+        driver
+                .switchTo()
+                .window(newTab.get(0));
     }
 
 }

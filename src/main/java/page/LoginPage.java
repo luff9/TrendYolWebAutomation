@@ -42,6 +42,8 @@ public class LoginPage {
     }
 
     public String getLoggedInUserEMail() {
-        return loggedInUser().get(0).getAttribute("innerText");
+        return loggedInUser()
+                .get(0)
+                .getAttribute("innerText");
     }
 }

@@ -23,6 +23,7 @@ public class HomePage {
     WebElement buttonNavigateToBasket() {
         return driver.findElement(By.xpath("//div[@data-fragment-name='AccountNavigation']//a[contains(@class,'account-basket')]"));
     }
+
     WebElement buttonNavigateToFavorite() {
         return driver.findElement(By.xpath("//div[@data-fragment-name='AccountNavigation']//a[contains(@class,'account-favorites')]"));
     }
@@ -34,9 +35,11 @@ public class HomePage {
     WebElement inputSearch() {
         return driver.findElement(By.xpath("//input[@class='search-box']"));
     }
+
     public List<WebElement> navigationTab() {
         return driver.findElements(By.xpath("//div[@id='navigation']//li[@class='tab-link']"));
     }
+
     public List<WebElement> navigationComponent() {
         return driver.findElements(By.xpath("//a[@class='item']"));
     }
@@ -45,7 +48,7 @@ public class HomePage {
         buttonNavigateToLogIn().click();
     }
 
-    public void AcceptCookies() {
+    public void acceptCookies() {
         buttonAcceptCookies().click();
         Driver.sleep(2000);
     }

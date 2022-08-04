@@ -18,30 +18,31 @@ public class FavoritePage {
     WebElement textProductBrandName(WebElement el) {
         return el.findElement(By.xpath(".//span[@class='prdct-desc-cntnr-ttl']"));
     }
+
     WebElement textProductDescription(WebElement el) {
         return el.findElement(By.xpath(".//span[contains(@class, 'prdct-desc-cntnr-name')]"));
     }
+
     WebElement textProductPrice(WebElement el) {
         return el.findElement(By.xpath(".//div[@class='prc-box-dscntd']"));
     }
+
     WebElement buttonUnFavoriteProduct(WebElement el) {
         return el.findElement(By.xpath(".//i[@class='i-close']"));
     }
+
     WebElement buttonAddBasket(WebElement el) {
         return el.findElement(By.xpath(".//div[contains(@class,'basket-button')]"));
     }
 
-    List<WebElement> divListedProductList() {
+    List<WebElement> divProductList() {
         return driver.findElements(By.xpath("//div[@class='favored-product-container']//div[@class='p-card-wrppr']"));
     }
 
 
-
-
-
     public void deleteAllFavorites() {
-        while (!divListedProductList().isEmpty()){
-            buttonUnFavoriteProduct(divListedProductList().get(0)).click();
+        while (!divProductList().isEmpty()) {
+            buttonUnFavoriteProduct(divProductList().get(0)).click();
             Driver.sleep(2000);
         }
 
@@ -49,14 +50,14 @@ public class FavoritePage {
     }
 
 
-
     public Product addProductToBasket() {
-        WebElement el=divListedProductList().get(0);
+        WebElement el = divProductList().get(0);
         Product product = mapProduct(el);
         buttonAddBasket(el).click();
         Driver.sleep(2000);
         return product;
     }
+
     private Product mapProduct(WebElement el) {
         Product product = new Product();
         product.setBrandName(textProductBrandName(el).getText());

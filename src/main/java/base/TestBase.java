@@ -12,12 +12,13 @@ public class TestBase {
     public LoginPage loginPage;
 
     @BeforeTest
-    public void setUp(){
+    public void setUp() {
 
     }
+
     @AfterTest
-    public void tearDown(){
-    driver.quit();
+    public void tearDown() {
+        driver.quit();
     }
 
 }

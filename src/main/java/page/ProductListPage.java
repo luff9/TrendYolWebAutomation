@@ -21,7 +21,8 @@ public class ProductListPage {
     WebElement inputBrandSearch() {
         return driver.findElement(By.xpath("//div[@data-title='Marka']//input"));
     }
-    List<WebElement>  overlayOption() {
+
+    List<WebElement> overlayOption() {
         return driver.findElements(By.xpath("//div[@class='overlay']"));
     }
 
@@ -44,18 +45,23 @@ public class ProductListPage {
     WebElement buttonPriceSearch() {
         return driver.findElement(By.xpath("//button[@class='fltr-srch-prc-rng-srch']"));
     }
+
     WebElement textProductBrandName(WebElement el) {
         return el.findElement(By.xpath(".//span[@class='prdct-desc-cntnr-ttl']"));
     }
+
     WebElement textProductDescription(WebElement el) {
         return el.findElement(By.xpath(".//span[contains(@class, 'prdct-desc-cntnr-name')]"));
     }
+
     WebElement textProductPrice(WebElement el) {
         return el.findElement(By.xpath(".//div[@class='prc-box-dscntd']"));
     }
+
     public WebElement imageProductImage(WebElement el) {
         return el.findElement(By.xpath(".//img[@class='p-card-img']"));
     }
+
     private WebElement buttonAddFavorite(WebElement el) {
         return el.findElement(By.xpath(".//i[@class='fvrt-btn']"));
     }
@@ -63,10 +69,12 @@ public class ProductListPage {
     List<WebElement> webElementFilter(String filterName) {
         return driver.findElements(By.xpath("//div[@data-title='" + filterName + "']"));
     }
+
     List<WebElement> textSelectedFilters() {
         return driver.findElements(By.xpath("//div[@class='slctd-fltrs-cntnr']//div[@class='slctd-fltr-item']//span"));
     }
-    public List<WebElement> divListedProductList() {
+
+    public List<WebElement> getProductList() {
         refreshIfOverlayExist();
         return driver.findElements(By.xpath("//div[contains(@class,'p-card-wrppr')]"));
     }
@@ -99,24 +107,27 @@ public class ProductListPage {
     public ArrayList<String> getSelectedFilters() {
         ArrayList<String> ret1 = new ArrayList<>();
         for (WebElement el : textSelectedFilters()) {
-            if (!el.getText().isEmpty()) {
+            if (!el
+                    .getText()
+                    .isEmpty()) {
                 ret1.add(el.getText());
             }
         }
         return ret1;
     }
-    public ArrayList<Product> getListedProducts(){
-        ArrayList<Product> ret1= new ArrayList<>();
-        boolean isLazyLoadingFinished=false;
-        while(!isLazyLoadingFinished) {
-            List<WebElement> productDivArr = divListedProductList();
+
+    public ArrayList<Product> getListedProducts() {
+        ArrayList<Product> ret1 = new ArrayList<>();
+        boolean isLazyLoadingFinished = false;
+        while (!isLazyLoadingFinished) {
+            List<WebElement> productDivArr = getProductList();
             for (WebElement el : productDivArr) {
                 Product product = mapProduct(el);
-                if(!ret1.contains(product)){
+                if (!ret1.contains(product)) {
                     ret1.add(product);
                 }
             }
-            isLazyLoadingFinished=isLazyLoadingFinished(productDivArr);
+            isLazyLoadingFinished = isLazyLoadingFinished(productDivArr);
         }
         return ret1;
     }
@@ -130,19 +141,20 @@ public class ProductListPage {
         return product;
     }
 
-    public Product selectProduct(){
-        List<WebElement> productDivArr = divListedProductList();
-        Driver.scrollIntoViewTop(driver,productDivArr.get(0));
+    public Product selectProduct() {
+        List<WebElement> productDivArr = getProductList();
+        Driver.scrollIntoViewTop(driver, productDivArr.get(0));
         Product product = mapProduct(productDivArr.get(0));
         textProductDescription(productDivArr.get(0)).click();
         Driver.closeOldTabAndSwitchNewTab(driver);
         return product;
     }
-    private boolean isLazyLoadingFinished(List<WebElement> webElementList){
-        Driver.scrollIntoViewTop(driver,webElementList.get(webElementList.size()-1));
-        List<WebElement> productDivArr = divListedProductList();
-        for (WebElement el:productDivArr){
-            if(!webElementList.contains(el))
+
+    private boolean isLazyLoadingFinished(List<WebElement> webElementList) {
+        Driver.scrollIntoViewTop(driver, webElementList.get(webElementList.size() - 1));
+        List<WebElement> productDivArr = getProductList();
+        for (WebElement el : productDivArr) {
+            if (!webElementList.contains(el))
                 return false;
         }
         return true;
@@ -151,15 +163,18 @@ public class ProductListPage {
 
     public Product addProductToFavorite() {
         refreshIfOverlayExist();
-        List<WebElement> productDivArr = divListedProductList();
+        List<WebElement> productDivArr = getProductList();
         Product product = mapProduct(productDivArr.get(0));
         buttonAddFavorite(productDivArr.get(0)).click();
         Driver.sleep(3000);
         return product;
     }
-    public void refreshIfOverlayExist(){
-        if(!overlayOption().isEmpty()){
-            driver.navigate().refresh();
+
+    public void refreshIfOverlayExist() {
+        if (!overlayOption().isEmpty()) {
+            driver
+                    .navigate()
+                    .refresh();
             Driver.sleep(3000);
         }
     }

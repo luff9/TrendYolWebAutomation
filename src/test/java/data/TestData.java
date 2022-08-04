@@ -8,8 +8,8 @@ public class TestData {
     @DataProvider(name = "driverData")
     public static Object[][] getDriverList() {
         return new Object[][]{
-                {"firefoxdriver"},
-                {"edgedriver"},
+//                {"firefoxdriver"},
+//                {"edgedriver"},
                 {"chromedriver"}};
     }
 
@@ -47,12 +47,12 @@ public class TestData {
     }
 
 
-    @DataProvider(name = "addBasket_data")
+    @DataProvider(name = "addBasket")
     public static Object[][] driverAndValidUserDataAndProductWithSearchTextBrandMinMaxPrice() {
         return mergeData(mergeData(getDriverList(), getValidUserInfoList()), getProductWithSearchTextBrandMinMaxPrice());
     }
 
-    @DataProvider(name = "addFavoriteAndAddBasket_data")
+    @DataProvider(name = "addFavoriteAndAddBasket")
     public static Object[][] driverAndValidUserDataAndProductWithSearchText() {
         return mergeData(mergeData(getDriverList(), getValidUserInfoList()), getProductWithSearchText());
     }
